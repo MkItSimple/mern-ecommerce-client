@@ -14,3 +14,28 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: "Zurich";
+  src: local("ZurichBT-RomanExtended"),
+    url("/fonts/ZurichBT-RomanExtended.woff2") format("truetype");
+}
+
+@font-face {
+  font-family: "Chewy";
+  src: local("Chewy-Regular"),
+    url("/fonts/Chewy-Regular.ttf") format("truetype");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Gotham Book";
+  src: local("GothamBook"), url("/fonts/GothamBook.ttf") format("truetype");
+  /* font-weight: 100; */
+}
+
+@font-face {
+  font-family: "Gotham Light";
+  src: local("GothamLight"), url("/fonts/GothamLight.ttf") format("truetype");
+  /* font-weight: 100; */
+}

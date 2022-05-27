@@ -1,0 +1,1 @@
+import styled from 'styled-components'; export const VariantsTableStyles = styled.div``

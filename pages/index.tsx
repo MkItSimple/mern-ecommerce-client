@@ -144,10 +144,10 @@ const Shop = ({products, brands, colors, sizes}: {products: Product[], brands: V
 // export const getStaticProps: GetStaticProps = async () => {
 export const getServerSideProps: GetServerSideProps = async () => {
 
-  const productsRes = await axios.get('http://localhost:8001/api/products/100');
-  const brandsRes = await axios.get('http://localhost:8001/api/brands');
-  const colorsRes = await axios.get('http://localhost:8001/api/colors');
-  const sizesRes = await axios.get('http://localhost:8001/api/sizes');
+  const productsRes = await axios.get(`${process.env.apiUrl}/products/100`);
+  const brandsRes = await axios.get(`${process.env.apiUrl}/brands`);
+  const colorsRes = await axios.get(`${process.env.apiUrl}/colors`);
+  const sizesRes = await axios.get(`${process.env.apiUrl}/sizes`);
 
   return {
     props: {

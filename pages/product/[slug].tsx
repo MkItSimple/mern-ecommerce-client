@@ -217,8 +217,8 @@ export const getServerSideProps: GetServerSideProps = async ({params}) => {
 
     // const productsRes = await axios.get('http://localhost:8001/api/product');
     // const brandsRes = await axios.get('http://localhost:8001/api/brands');
-    const colorsRes = await axios.get('http://localhost:8001/api/colors');
-    const sizesRes = await axios.get('http://localhost:8001/api/sizes');
+    const colorsRes = await axios.get(`${process.env.apiUrl}/colors`);
+    const sizesRes = await axios.get(`${process.env.apiUrl}/sizes`);
 
   return {
     props: {

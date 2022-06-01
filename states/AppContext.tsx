@@ -24,6 +24,7 @@ export const AppContextProvider = ({
   const [openSearchDrawer, setOpenSearchDrawer] = useState(false)
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false)
   const [openZoom, setOpenZoom] = useState(false);
+  const [zoomUrl, setZoomUrl] = useState("");
   const [cart, setCart] = useState<CartItemType[]>([]);
   const [couponApplied, setCouponApplied] = useState<CartItemType[]>([]);
   const [coupon, setCoupon] = useState("")
@@ -242,7 +243,7 @@ export const AppContextProvider = ({
   useEffect(() => {
     const tracker = setTimeout(() => {
       updateCart(cart).then((res) => {
-          console.log("server cart updated", res.data);
+          // console.log("server cart updated", res.data);
         });
     }, 500);
 
@@ -252,7 +253,7 @@ export const AppContextProvider = ({
   }, [cart])
 
   useEffect(() => {
-   console.log("filteredProducts ", filteredProducts);
+  //  console.log("filteredProducts ", filteredProducts);
    
   }, [filteredProducts])
   
@@ -265,6 +266,7 @@ export const AppContextProvider = ({
       openSearchDrawer, setOpenSearchDrawer,
       openConfirmationModal, setOpenConfirmationModal,
       openZoom, setOpenZoom,
+      zoomUrl, setZoomUrl,
       user,
       signup,
       signinWithLink,

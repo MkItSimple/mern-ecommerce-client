@@ -25,6 +25,7 @@ import SearchDrawer from "../../components/drawers/SearchDrawer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart} from "@fortawesome/free-solid-svg-icons"
 import { addToWishlist } from "../../api/userApi";
+import ZoomProduct from "../../components/ZoomProduct";
 
 const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, colors:VariantType[], sizes:VariantType[]}) => {
   // const { setOpenCartDrawer } = useApp();
@@ -37,6 +38,7 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
     openSearchDrawer,  
     cart,  
     setOpenCartDrawer,
+    openZoom,
     addToCart
   } = useApp();
 
@@ -133,6 +135,7 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
     <ProductStyles>
       {openCartDrawer && <CartDrawer />}
       {openSearchDrawer && <SearchDrawer />}
+      {openZoom && <ZoomProduct />}
       <Header />
       <div className="product_wrapper">
         <div className="left">

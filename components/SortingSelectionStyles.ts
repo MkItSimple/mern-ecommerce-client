@@ -51,10 +51,11 @@ export const SortingSelectionStyles = styled.div`
     display: block;
     padding: 0.3em 1em;
     box-sizing: border-box;
-    font-family: var(--familyRegular);
+    font-family: "Gotham";
     letter-spacing: 1px;
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);
+      cursor: pointer;
     }
   }
   .sorting_list {

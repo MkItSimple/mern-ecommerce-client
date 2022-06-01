@@ -79,10 +79,11 @@ export const ProductCardStyles = styled.div`
   }
 
   .tag {
+    font-size: 12px;
     &::before {
       font-family: "Gotham Light";
-      font-size: var(--fontSizeSmall);
-    letter-spacing: 1px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
 
       padding: 7px 9px;
       position: absolute;
@@ -91,7 +92,6 @@ export const ProductCardStyles = styled.div`
     }
     @media only screen and ${device.mobileL} {
       &::before {
-        font-size: var(--fontSizeSmaller);
         padding: 5px;
       }
     }}

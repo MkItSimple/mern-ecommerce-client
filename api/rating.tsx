@@ -29,7 +29,7 @@ export const showAverage = (p: Product) => {
     // console.log("highest", highest);
 
     let result = (totalReduced * 5) / highest;
-    console.log("result", result);
+    // console.log("result", result);
 
     return (
       <RootDiv>

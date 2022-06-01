@@ -65,7 +65,7 @@ export const FilterFormStyles = styled.div`
 
     + label {
       display: flex;
-      font-family: "Archivo"
+      font-family: "Gotham Light"
       font-weight: 400;
       font-size: 14px;
       font-size: 13px;
@@ -137,7 +137,7 @@ export const FilterFormStyles = styled.div`
       padding: .8em 1em;
       box-sizing: border-box;
       color: #fff;
-      font-family: "Archivo";
+      font-family: "Gotham Light";
       text-transform: uppercase;
       letter-spacing: .3em;
       font-size: 12px;
@@ -147,7 +147,7 @@ export const FilterFormStyles = styled.div`
       padding: .8em 1em;
       box-sizing: border-box;
       color: #fff;
-      font-family: "Archivo";
+      font-family: "Gotham Light";
       font-weight: 400;
       font-size: 12px;
       text-transform: uppercase;

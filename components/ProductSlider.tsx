@@ -15,7 +15,7 @@ const ProductSlider = ({ product }: { product: Product }) => {
   // const [scrollY, setScrollY] = useState(0);
   const [imageWidth, setimageWidth] = useState(0);
   const [imagesThumb, setImagesThumb] = useState<ImageType[]>([]);
-  const { openZoom, zoom} = useApp();
+  const { setOpenZoom, setZoomUrl} = useApp();
 
   const onThumbClicked = (index: number) => {
     setScrollX(index + 1);
@@ -64,8 +64,8 @@ const ProductSlider = ({ product }: { product: Product }) => {
         <div className="overflowing_container" ref={imagesOverflow}> 
            {product.images &&
             product.images.map((image, index) => (
-              <div key={index} className='b' ref={imageRef}>
-                <Image src={image.url} alt="Product Image" layout='fill' objectFit='cover'/>
+              <div key={index} className='b' ref={imageRef} onClick={() =>{ setOpenZoom(true); setZoomUrl(image.url); }}>
+                <Image src={image.url} alt="Product Image" layout='fill' objectFit='cover' priority />
               </div>
             ))}
         </div>
@@ -76,7 +76,7 @@ const ProductSlider = ({ product }: { product: Product }) => {
           {imagesThumb &&
             imagesThumb.map((image, index) => (
             <div key={index} className={scrollX === index + 1 ? "thumb active" : "thumb"} onClick={() => onThumbClicked(index)}>
-                <Image src={image.url} alt="" layout='fill' objectFit='cover'/>
+                <Image src={image.url} alt="" layout='fill' objectFit='cover' priority />
             </div>
             
             ))}

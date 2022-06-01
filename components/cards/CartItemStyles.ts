@@ -14,10 +14,10 @@ export const CartItemStyles = styled.div`
     box-sizing: border-box;
     padding-left: .5em;
   }
-  img {
+  .image_container {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    position: relative;
   }
   .product_name {
     display: flex;

@@ -24,6 +24,9 @@ const ProductsStyles = styled.div`
     @media only screen and ${device.tablet} {
       padding: 1.7em 2em 0em 2em;
     }
+    @media only screen and ${device.mobileL} {
+      padding: 0em .7em 0em .7em;
+    }
   }
 
   .left {
@@ -53,7 +56,16 @@ const ProductsStyles = styled.div`
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-gap: 1em;
-    }}
+    }
+
+    @media only screen and ${device.mobileL} {
+      top: 83px;
+      grid-gap: .3em;
+      margin-bottom: 0em;
+      span {
+        font-size: 14px;
+      }
+    }
   }
 
   .filter_button {
@@ -61,6 +73,9 @@ const ProductsStyles = styled.div`
     align-items: center;
     span {
       font-size: var(--fontSizeMedium);
+      @media only screen and ${device.mobileL} {
+        font-size: 14px;
+      }
     }
     .icon {
       width: 20px;
@@ -93,6 +108,7 @@ const ProductsStyles = styled.div`
     }
     @media only screen and ${device.mobileL} {
       grid-template-columns: 1fr 1fr;
+       grid-gap: .3em;
     }
   }
 `

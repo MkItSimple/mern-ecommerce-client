@@ -22,6 +22,9 @@ export const FilterDrawerStyles = styled.div`
     padding: 1.5em 0em;
     margin: 0em 2em;
     border-bottom: 1px solid #e8e8e1;
+    @media only screen and ${device.mobileL} {
+      padding: 0em 0em;
+    }
 
     .icon {
       &:hover {
@@ -37,5 +40,8 @@ export const FilterDrawerStyles = styled.div`
     padding: 2em;
     max-height: 73vh;
     overflow-y: auto;
+    @media only screen and ${device.mobileL} {
+      padding: 0em 2em;
+    }
   }
 `;

@@ -156,6 +156,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       colors: colorsRes.data,
       sizes: sizesRes.data,
     },
+    revalidate: 60,
   };
 }
 

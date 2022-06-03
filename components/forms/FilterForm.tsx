@@ -47,6 +47,8 @@ const FilterForm = ({params}: FilterFormProps) => {
 
   const [priceFilters, setPriceFilters] = useState<number[]>([getLowestPrice(params.products), getHighestPrice(params.products)]);
 
+  const [priceChanged, setPriceChanged] = useState(false)
+
   // To update visible variant options
    const getUniquesByBrandsHandler = (newChecked: string[]) => {
     let newVisibleVariants = getUniquesByBrands(params.products, newChecked);
@@ -174,19 +176,34 @@ const FilterForm = ({params}: FilterFormProps) => {
 
   const onPriceChange = (event: Event, newValue: number | number[]) => {
     setPriceFilters(newValue as number[]);
+    setPriceChanged(true);
   };
 
   const udpateByPrice = useCallback(
     () => {
-      const brandUrlParam = brandFilters.length > 0 ? `brand=${brandFilters.join(',')}&` : "";
-      const colorUrlParam = colorFilters.length > 0 ? `color=${colorFilters.join(',')}&` : "";
-      const sizeUrlParam = sizeFilters.length > 0 ? `size=${sizeFilters.join(',')}&` : "";
-      const priceUrlParam = priceFilters.length > 0 ? `price=${priceFilters.join(',')}` : "";
-      // const sortParam = sort ? `sort=${sort}` : "";
-      router.push(`/?${brandUrlParam + '' + colorUrlParam + '' + sizeUrlParam + '' + priceUrlParam}`, undefined, { shallow: true });
+      if (priceChanged) {
+        setPriceChanged(false);
+        const brandUrlParam = brandFilters.length > 0 ? `brand=${brandFilters.join(',')}&` : "";
+        const colorUrlParam = colorFilters.length > 0 ? `color=${colorFilters.join(',')}&` : "";
+        const sizeUrlParam = sizeFilters.length > 0 ? `size=${sizeFilters.join(',')}&` : "";
+        const priceUrlParam = priceFilters.length > 0 ? `price=${priceFilters.join(',')}` : "";
+        // const sortParam = sort ? `sort=${sort}` : "";
+        router.push(`/?${brandUrlParam + '' + colorUrlParam + '' + sizeUrlParam + '' + priceUrlParam}`, undefined, { shallow: true });
+      }
     },
-    [brandFilters, colorFilters, sizeFilters, priceFilters, router],
+    [brandFilters, colorFilters, sizeFilters, priceFilters, priceChanged, router],
   );
+
+  useEffect(() => {
+    const ID = setTimeout(() => {
+      udpateByPrice()
+    }, 300);
+  
+    return () => {
+      clearTimeout(ID)
+    }
+  }, [priceChanged, udpateByPrice])
+  
 
   // step 1
   useEffect(() => {

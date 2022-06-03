@@ -5,7 +5,7 @@ import Header from "../components/Header"
 import FilterDrawer from "../components/drawers/FilterDrawer"
 import axios from "axios";
 import styled from 'styled-components';
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import ProductCard from "../components/cards/ProductCard";
 import { device } from "../components/styles/GlobalStyles";
 import CartDrawer from "../components/drawers/CartDrawer";
@@ -142,7 +142,7 @@ const Shop = ({products, brands, colors, sizes}: {products: Product[], brands: V
 };
 
 // export const getStaticProps: GetStaticProps = async () => {
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
 
   const productsRes = await axios.get(`${process.env.apiUrl}/products/100`);
   const brandsRes = await axios.get(`${process.env.apiUrl}/brands`);
@@ -156,7 +156,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       colors: colorsRes.data,
       sizes: sizesRes.data,
     },
-    revalidate: 60,
+    revalidate: 60
   };
 }
 

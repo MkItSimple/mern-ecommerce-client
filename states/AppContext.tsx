@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, isSignInWi
 import { createOrUpdateUserApi, currentUserApi } from "../api/authApi";
 import { auth } from "../config/firebase";
 import { createContext, useContext, useEffect, useState } from 'react'
-import { CartItemType, Product } from "../types";
+import { CartItemType, Product, Sort } from "../types";
 import { getCart, updateCart } from "../api/cartApi";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
@@ -31,7 +31,7 @@ export const AppContextProvider = ({
   const [intended, setIntended] = useState("")
 
   const [loading, setLoading] = useState(false)
-  const [sort, setSort] = useState("")
+  const [sort, setSort] = useState(Sort.BEST_SELLING)
 
   // const [variants, setVariants] = useState()
   // const [cartTotalPrice, setCartTotalPrice] = useState(0);

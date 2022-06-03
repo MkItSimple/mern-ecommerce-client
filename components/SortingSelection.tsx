@@ -8,7 +8,7 @@ const SortingSelection = () => {
   const options = [Sort.SORT, Sort.BEST_SELLING, Sort.A_TO_Z, Sort.Z_TO_A, Sort.PRICE_LOW_TO_HIGH, Sort.PRICE_HIGH_TO_LOW];
   const [open, setOpen] = useState(false);
 
-  const [value, setValue] = useState<string>(Sort.SORT);
+  const [value, setValue] = useState<string>(Sort.BEST_SELLING);
   const setValueHandler = (value: string) => {
     setSort(value)
     setValue(value);

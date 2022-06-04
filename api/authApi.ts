@@ -18,9 +18,9 @@ export const createOrUpdateUserApi = async (authtoken: string) => {
     {
       headers: {
         authtoken,
+        withCredentials: true,
       },
-    },
-    { withCredentials: true }
+    }
   );
 };
 
@@ -30,9 +30,9 @@ export const currentUserApi = async (authtoken: string) => {
     {
       headers: {
         authtoken,
+        withCredentials: true,
       },
-    },
-    { withCredentials: true }
+    }
   );
 };
 
@@ -42,8 +42,8 @@ export const currentAdminApi = async (authtoken: string) => {
     {
       headers: {
         authtoken,
+        withCredentials: true,
       },
-    },
-    { withCredentials: true }
+    }
   );
 };

@@ -1,5 +1,5 @@
 import axios from "axios";
-
+axios.defaults.withCredentials = true;
 // export const uploadImageApi = async (updatedImage: string) =>
 //   await axios.post(`${process.env.apiUrl}/uploadimages`, {
 //     image: updatedImage,

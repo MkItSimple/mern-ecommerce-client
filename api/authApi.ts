@@ -17,8 +17,7 @@ export const createOrUpdateUserApi = async (authtoken: string) => {
     `${process.env.apiUrl}/create-or-update-user`,
     {
       headers: {
-        authtoken,
-        withCredentials: true,
+        authtoken
       },
     }
   );
@@ -29,8 +28,7 @@ export const currentUserApi = async (authtoken: string) => {
     `${process.env.apiUrl}/current-user`,
     {
       headers: {
-        authtoken,
-        withCredentials: true,
+        authtoken
       },
     }
   );
@@ -41,8 +39,7 @@ export const currentAdminApi = async (authtoken: string) => {
     `${process.env.apiUrl}/current-admin`,
     {
       headers: {
-        authtoken,
-        withCredentials: true,
+        authtoken
       },
     }
   );

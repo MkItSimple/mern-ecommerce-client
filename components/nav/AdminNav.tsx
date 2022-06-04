@@ -17,8 +17,10 @@ const RootDiv = styled.nav`
     letter-spacing: 0.3em;
     font-size: 12px;
     text-align: left;
-
     border-bottom: 1px solid #eee;
+    span {
+      cursor: pointer;
+    }
   }
   .nav-link, span, a {
     display: block;

@@ -142,8 +142,11 @@ export const AppContextProvider = ({
 
   const logout = async () => {
     setUser(null)
-    await signOut(auth)
+    await signOut(auth).then(() => {
+      router.push('/login');
+    })
     // await console.log("logout");
+
   }
 
   const forgotPassword = async (email: string) => {

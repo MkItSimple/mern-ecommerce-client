@@ -27,7 +27,7 @@ const Header = () => {
         <Image src="/images/mern_ecommerce.jpg" alt="Website Logo" layout="fill" objectFit="cover" priority></Image>
       </div>
         <ul>
-          <li className="shop" onClick={() => router.replace('/shop')}>
+          <li className="shop" onClick={() => router.replace('/')}>
             Shop
           </li>
           <li onClick={() => router.replace(loginUrl)}>

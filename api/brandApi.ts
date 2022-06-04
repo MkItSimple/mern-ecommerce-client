@@ -3,10 +3,10 @@ import axios from "axios";
 // axios.defaults.withCredentials = true;
 
 export const getBrandsApi = async () =>
-  await axios.get(`${process.env.apiUrl}/brands`);
+  await axios.get(`${process.env.apiUrl}/brands`, { withCredentials: true });
 
 export const getBrandApi = async (slug: string) =>
-  await axios.get(`${process.env.apiUrl}/brand/${slug}`);
+  await axios.get(`${process.env.apiUrl}/brand/${slug}`, { withCredentials: true });
 
 
 export const createBrandApi = async (name: string, authtoken: string) =>

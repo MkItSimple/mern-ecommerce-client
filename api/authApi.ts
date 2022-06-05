@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 // export const createOrUpdateUserApi = async (authtoken: string) => {
 //   return await axios.post(

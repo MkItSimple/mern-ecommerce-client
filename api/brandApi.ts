@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 export const getBrandsApi = async () =>
   await axios.get(`${process.env.apiUrl}/brands`, { withCredentials: true });

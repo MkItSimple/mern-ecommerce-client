@@ -1,5 +1,5 @@
 import axios from "axios";
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 export const getColorsApi = async () =>
   await axios.get(`${process.env.apiUrl}/colors`);

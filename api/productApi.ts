@@ -1,6 +1,8 @@
 import axios from "axios";
 import { NewProduct, UpdatedProduct } from "../types";
 
+axios.defaults.withCredentials = true;
+
 export const createProductApi = async (product: NewProduct, authtoken: string) =>
   await axios.post(`${process.env.apiUrl}/product`, product, {
     headers: {

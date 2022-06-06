@@ -51,6 +51,7 @@ export const AppContextProvider = ({
 
   const signup = async (email: string) => {
     // console.log(email);
+    setLoading(true);
     if (process.env.firebaseRegisterRedirectUrl) {
       const actionCodeSettings = {
         url: process.env.firebaseRegisterRedirectUrl || "",
@@ -65,11 +66,13 @@ export const AppContextProvider = ({
       // save user email in local storage
       window.localStorage.setItem("emailForRegistration", email);
     }
+    setLoading(false);
   }
 
   const signinWithLink = async (email: string, password: string) => {
      const auth = getAuth();
-     console.log("auth here ", auth);
+    //  console.log("auth here ", auth);
+    setLoading(true);
      if (isSignInWithEmailLink(auth, window.location.href)) {
         let email = window.localStorage.getItem('emailForRegistration');
         // console.log("emailForRegistration ", email);
@@ -93,22 +96,26 @@ export const AppContextProvider = ({
                 }
               )
               router.push("/login");
+              setLoading(false);
             })
             .catch((err: any) => console.log(err));
           // redirect
           // router.push("/");
         }
      }
+     setLoading(false);
   }
 
   const loginWithGoogle = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    setLoading(true);
     const provider = new GoogleAuthProvider();
     await signInWithPopup(auth, provider)
       .then((result: any) => {
         createOrUpdateUserApi(result.user.accessToken).catch((err) => console.log(err));
       })
       .catch((error: Error) => {});
+    setLoading(false);
   };
 
   const login = async (email: string, password: string) => {

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useApp } from '../states/AppContext'
 
 import styled from 'styled-components';import Header from '../components/Header';
+import Loading from '../components/Loading';
  const RegisterStyles = styled.div`
   max-width: 430px;
   padding: 4em 2em;
@@ -16,7 +17,7 @@ import styled from 'styled-components';import Header from '../components/Header'
 
 const Register = () => {
   const router = useRouter();
-  const { user, signup } = useApp()
+  const { user, signup, loading } = useApp()
   const [email, setEmail] = useState("");
 
   useEffect(() => {
@@ -35,6 +36,7 @@ const Register = () => {
 
   const registerForm = () => (
     <>
+      {loading && <Loading />}
       <Header />
       <RegisterStyles>
         <form onSubmit={handleSubmit}>

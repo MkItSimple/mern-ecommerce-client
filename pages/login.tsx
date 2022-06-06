@@ -3,12 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
+import Loading from "../components/Loading";
 import { LoginStyles } from "../components/styles/LoginStyles";
 import { useApp } from "../states/AppContext";
 
 const Login = () => {
   const router = useRouter();
-  const { user, login, loginWithGoogle, intended } = useApp();
+  const { user, login, loginWithGoogle, intended, loading } = useApp();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -47,6 +48,7 @@ const Login = () => {
 
   return (
     <>
+    {loading && <Loading />}
     <Header />
     <LoginStyles>
       <h1 className="section-header__title">Login</h1>

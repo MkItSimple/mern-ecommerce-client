@@ -150,8 +150,10 @@ export const AppContextProvider = ({
   const logout = async () => {
     setUser(null)
     await signOut(auth).then(() => {
+      setLoading(false)
       router.push('/login');
     })
+    
     // await console.log("logout");
 
   }

@@ -5,9 +5,11 @@ import { HeaderStyles } from "./HeaderStyles";
 import { useApp } from "../states/AppContext";
 import { useRouter } from "next/router";
 import { SearchOutlined, ShoppingOutlined, UserOutlined } from "@ant-design/icons";
+import CartDrawer from "../components/drawers/CartDrawer";
+import SearchDrawer from "../components/drawers/SearchDrawer";
 
 const Header = () => {
-  const { setOpenSearchDrawer, setOpenCartDrawer, cart, user } = useApp();
+  const { openCartDrawer, openSearchDrawer, setOpenSearchDrawer, setOpenCartDrawer, cart, user } = useApp();
   const [loginUrl, setLoginUrl] = useState("")
   const router = useRouter();
 
@@ -21,6 +23,8 @@ const Header = () => {
   
   return (
     <>
+    {openCartDrawer && <CartDrawer />}
+    {openSearchDrawer && <SearchDrawer />}
     <HeaderStyles>
       <div className="wrapper">
         <div className="logo_container" onClick={() => router.replace('/')}>

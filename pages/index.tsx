@@ -8,9 +8,7 @@ import styled from 'styled-components';
 import { GetServerSideProps, GetStaticProps } from "next";
 import ProductCard from "../components/cards/ProductCard";
 import { device } from "../components/styles/GlobalStyles";
-import CartDrawer from "../components/drawers/CartDrawer";
 import { useApp } from "../states/AppContext";
-import SearchDrawer from "../components/drawers/SearchDrawer";
 import SortingSelection from "../components/SortingSelection";
 import FilterForm from "../components/forms/FilterForm";
 import IconFilter from "../components/svg/IconFilter";
@@ -113,7 +111,7 @@ const ProductsStyles = styled.div`
   }
 `
 const Shop = ({products, brands, colors, sizes}: {products: Product[], brands: VariantType[], colors:VariantType[], sizes:VariantType[]}) => {
-  const { openCartDrawer, openSearchDrawer, openFilterDrawer, setOpenFilterDrawer } = useApp();
+  const { openFilterDrawer, setOpenFilterDrawer } = useApp();
   const {filteredProducts} = useApp();
 
   const params = {
@@ -126,8 +124,7 @@ const Shop = ({products, brands, colors, sizes}: {products: Product[], brands: V
   return (
     <>
     {openFilterDrawer && <FilterDrawer params={params}/>}
-    {openCartDrawer && <CartDrawer />}
-    {openSearchDrawer && <SearchDrawer />}
+    
     <Header />
     <ProductsStyles>
       <div className="content_wrapper">

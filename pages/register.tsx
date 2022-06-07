@@ -13,12 +13,20 @@ import Loading from '../components/Loading';
   h1 {
     text-align: center;
   }
+  .register_success_message {
+    background-color: #9ff9e1;
+    color: #054861;
+    font-family: 'Gotham Book';
+    font-size: 1.3em;
+    padding: .5em;
+  }
 `
 
 const Register = () => {
   const router = useRouter();
   const { user, signup, loading } = useApp()
   const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false)
 
   useEffect(() => {
     if (user && user.token) router.push("/");
@@ -29,6 +37,7 @@ const Register = () => {
 
     try {
       await signup(email)
+      setSent(true);
     } catch (err) {
       console.log(err)
     }
@@ -55,6 +64,7 @@ const Register = () => {
         <button type="submit" className="btn big full btn_black">
           Create
         </button>
+        {sent && <p className='register_success_message'>{`Email is sent to ${email}. Click the link to complete your registration.`}</p>}
       </form>
       </RegisterStyles>
     </> 
@@ -66,3 +76,4 @@ const Register = () => {
 }
 
 export default Register
+// #054861

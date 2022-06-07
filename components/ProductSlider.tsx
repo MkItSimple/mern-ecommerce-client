@@ -65,7 +65,7 @@ const ProductSlider = ({ product }: { product: Product }) => {
            {product.images &&
             product.images.map((image, index) => (
               <div key={index} className='b' ref={imageRef} onClick={() =>{ setOpenZoom(true); setZoomUrl(image.url); }}>
-                <Image src={image.url} alt="Product Image" layout='fill' objectFit='cover' priority />
+                <Image src={image.url} alt="Product Image" layout='fill' objectFit='cover' priority placeholder='blur' blurDataURL={image.url}/>
               </div>
             ))}
         </div>

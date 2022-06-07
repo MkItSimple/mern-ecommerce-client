@@ -17,7 +17,7 @@ const RegisterCompleteStyles = styled.div`
   }
 `
 const RegisterComplete = () => {
-  const {signinWithLink} = useApp();
+  const {signinWithLink, setLoading} = useApp();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -40,11 +40,12 @@ const RegisterComplete = () => {
     }
 
     try {
-      await signinWithLink(email, password)
-      // console.log("signinWithLink");  
+      setLoading(true);
+      await signinWithLink(email, password);
+      setLoading(false);
     } catch (err) {
       console.log(err)
-      
+      setLoading(false);
     }
   }
 

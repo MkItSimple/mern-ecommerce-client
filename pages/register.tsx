@@ -64,7 +64,7 @@ const Register = () => {
         <button type="submit" className="btn big full btn_black">
           Create
         </button>
-        {sent && <p className='register_success_message'>{`Email is sent to ${email}. Click the link to complete your registration.`}</p>}
+        {sent && <p className='register_success_message'>{`Email is sent to ${email}. Check your inbox OR check it in your spam if its not in your inbox.`}</p>}
       </form>
       </RegisterStyles>
     </> 

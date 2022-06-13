@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { useApp } from '../states/AppContext';
 import styled from 'styled-components';
+import Loading from '../components/Loading';
 
 const RegisterCompleteStyles = styled.div`
   max-width: 430px;
@@ -17,7 +18,7 @@ const RegisterCompleteStyles = styled.div`
   }
 `
 const RegisterComplete = () => {
-  const {signinWithLink, setLoading} = useApp();
+  const {signinWithLink, setLoading, loading} = useApp();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -70,6 +71,7 @@ const RegisterComplete = () => {
 
   return (
     <RegisterCompleteStyles>
+      {loading && <Loading />}
       <h1>Complete Registration</h1>
       {completeRegistrationForm()}
     </RegisterCompleteStyles>

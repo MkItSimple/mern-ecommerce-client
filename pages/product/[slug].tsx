@@ -107,13 +107,18 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
 
   const handleAddToWishlist = () => {
     // add to wishlist
-    console.log("add to wishlist");
-    
-    addToWishlist(product._id, user.token).then((res) => {
-      // console.log("ADDED TO WISHLIST", res.data);
-      toast.success("Added to wishlist");
-      router.push("/user/wishlist");
-    });
+    // console.log("add to wishlist");
+
+    if (user && user.token) {
+      addToWishlist(product._id, user.token).then((res) => {
+        // console.log("ADDED TO WISHLIST", res.data);
+        toast.success("Added to wishlist");
+        router.push("/user/wishlist");
+      });
+    } else {
+
+      router.replace('/login');
+    }
   };
 
   const handleAddToCart = (product: Product) => {

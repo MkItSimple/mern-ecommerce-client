@@ -12,6 +12,7 @@ const CheckoutItem = ({ product }: { product: CheckoutItemType }) => {
           <Image src={product.image} alt="" layout="fill" objectFit="cover" />
         </div>
         <div className="quantity">{product.quantity}</div>
+        {/* <div className="quantity">7</div> */}
       </div>
       <div className="colB">
         <div className="product_name">{product.title}</div>

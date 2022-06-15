@@ -26,7 +26,6 @@ export const AppContextProvider = ({
   const [openZoom, setOpenZoom] = useState(false);
   const [zoomUrl, setZoomUrl] = useState("");
   const [cart, setCart] = useState<CartItemType[]>([]);
-  const [couponApplied, setCouponApplied] = useState<CartItemType[]>([]);
   const [coupon, setCoupon] = useState("")
   const [intended, setIntended] = useState("")
 
@@ -294,7 +293,7 @@ export const AppContextProvider = ({
       changeQuantity,
       incrementCartItem,
       decrementCartItem,
-      couponApplied, setCouponApplied,
+      coupon, setCoupon,
       intended, setIntended,
       loading, setLoading,
       sort, setSort,

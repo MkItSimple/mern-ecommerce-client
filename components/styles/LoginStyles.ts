@@ -15,13 +15,18 @@ export const LoginStyles = styled.div`
     text-align: center;
     margin-bottom: 1em;
   }
+  label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 13px;
+  }
   .label_container {
     display: block;
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
-    label {
-
+    a {
+      text-align: right;
     }
   }
   input {
@@ -29,7 +34,6 @@ export const LoginStyles = styled.div`
   }
   .forgot_password {
     width: 100%;
-    text-align: right;
     font-size: 0.85em;
   }
 

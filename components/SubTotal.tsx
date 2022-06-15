@@ -33,6 +33,7 @@ const SubTotal = () => {
   
   const loginToCheckout = () => {
     setIntended('/checkout')
+    setOpenCartDrawer(false)
     router.push("/login")
   };
   return (

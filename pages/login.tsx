@@ -95,7 +95,7 @@ const Login = () => {
             <Image src="/images/google-color.svg" alt="" layout="fill" objectFit="cover" />
           </div>
           
-          <span>login with google</span>
+          <span>Login with Google</span>
         </div>
 
         <div className="create_account_link">

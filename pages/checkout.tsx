@@ -14,10 +14,12 @@ import { useApp } from "../states/AppContext";
 const Checkout = () => {
   const router = useRouter();
   const { user, clearCart, setCouponApplied } = useApp(); 
+  const [emptyAddress, setEmptyAddress] = useState(false)
 
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [coupon, setCoupon] = useState("");
+  const [addressSaved, setAddressSaved] = useState(false);
   // discount price
   const [totalAfterDiscount, setTotalAfterDiscount] = useState(0);
   const [discountError, setDiscountError] = useState("");
@@ -28,6 +30,8 @@ const Checkout = () => {
       setProducts(res.data.products);
       setTotal(res.data.cartTotal);
     });//
+
+    user?.address?.street && setAddressSaved(true);
   }, [user]);
 
   const emptyCart = () => {
@@ -53,7 +57,6 @@ const Checkout = () => {
     // console.log("send coupon to backend", coupon);
     user && applyCoupon(user.token, coupon).then((res) => {
       // console.log("RES ON COUPON APPLIED", res.data);
-
       if (res.data.err) {
         setTotalAfterDiscount(0);
         toast.error(res.data.err);
@@ -64,7 +67,7 @@ const Checkout = () => {
         toast.success('Coupon Applied');
         setTotalAfterDiscount(res.data);
         // dispatch(setCouponApplied(true));
-        setCouponApplied(true)
+        setCouponApplied(true);
       }
     });
   }
@@ -113,6 +116,20 @@ const Checkout = () => {
     )
   };
 
+  const PlaceOrderButton = () => {
+    if (addressSaved) {
+      return <button className={`big place_order full btn_black`} onClick={()=> router.push("/payment")} disabled={!user.address.street || !products.length}>Place Order</button>
+    } else {
+      return <div className="provide_address">Please provide your address firstbefore placing your order.</div>
+    }
+
+    // {!user.address ? (
+    //             <div className="provide_address">Please provide your address firstbefore placing your order.</div>
+    //           ) : (
+    //             <button className={`big place_order full btn_black`} onClick={()=> router.push("/payment")} disabled={!user.address.street || !products.length}>Place Order</button>
+    //           )}
+  };
+
   return (
     <>
     <Header />
@@ -159,13 +176,24 @@ const Checkout = () => {
                 {totalAfterDiscount > 0 && 
                 <div className="discounted_price">
                   <span className="label"> Discount Applied! Total Payable:</span><span className="price"> ₱ {numberWithCommas(totalAfterDiscount)} </span>
-                  </div> 
-                  }
+                </div> 
+                }
+                {/* {true && 
+                <div className="discounted_price">
+                  <span className="label"> Discount Applied! Total Payable:</span><span className="price"> ₱ {numberWithCommas(34000)} </span>
+                </div> 
+                } */}
               </div>
               {/* ${user.address.street ? "btn_black": ""} */}
               {/* {user && <button className={`big place_order full ${user.address.street ? "btn_black": "btn_disabled"}`} disabled={user.address.street == "" || !products.length} onClick={()=> router.push("/payment")}>Place Order</button> } */}
-              <button className={`big place_order full btn_black`} onClick={()=> router.push("/payment")}>Place Order</button>
-              <button className="btn_white big full" onClick={emptyCart}>Empty Cart</button>
+              {/* {!user.address ? (
+                <div className="provide_address">Please provide your address firstbefore placing your order.</div>
+              ) : (
+                <button className={`big place_order full btn_black`} onClick={()=> router.push("/payment")} disabled={!user.address.street || !products.length}>Place Order</button>
+              )} */}
+              <PlaceOrderButton />
+              
+              <button className="btn_black big full" onClick={emptyCart}>Empty Cart</button>
             </div>
           </div>
         </div>

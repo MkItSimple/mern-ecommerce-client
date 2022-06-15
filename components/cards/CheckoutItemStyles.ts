@@ -19,15 +19,15 @@ export const CheckoutItemStyles = styled.div`
     right: 0px;
     background-color: #91999d;
     color: var(--colorWhite);
-    height: 15px;
-    width: 15px;
+    height: 23px;
+    width: 24px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.3em 0.5em;
-    padding-top: 0.7em;
-    font-size: var(--fontSizeSmall);
+    padding-top: 0.3em;
+    font-size: 1em;
   }
   .image_container {
     width: 100%;

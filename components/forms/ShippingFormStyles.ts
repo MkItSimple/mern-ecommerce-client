@@ -25,7 +25,8 @@ export const ShippingFormStyles = styled.div`
     padding: 0.3em 0.5em;
     background-color: #ffeeee;
     color: #cc3333;
-    font-family: "Calendas";
+    font-family: "Chewy";
+    letter-spacing: 1px;
   }
   @media only screen and ${device.mobileL} {
     button {

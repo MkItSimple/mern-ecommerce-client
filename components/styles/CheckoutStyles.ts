@@ -1,3 +1,4 @@
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import styled from "styled-components";
 import { device } from "./GlobalStyles";
 // import { device } from "../GlobalStyles";
@@ -166,17 +167,27 @@ export const CheckoutStyles = styled.div`
       margin-bottom: .3em; 
     }
     .discounted_price {
-      background-color: #76ff03;
-      color: #37474f;
-      padding: 1em;
+      background-color: #9ff9e1;
+      color: #054861;
+      padding: .5em 1em;
+      .label, .price {
+        font-family: 'Chewy';
+        font-size: 1.7em;
+      }
+    }
+
+    .label, .price {
+      font-family: 'Chewy';
+      font-size: 1.7em;
     }
     .label {
       flex: 1;
-      font-size: 18px;
     }
-    .price {
-      font-size: 20px;
-    }
+  }
+  .provide_address {
+    font-family: 'chewy';
+    font-size: 1.7em;
+    padding: .5em 0em;
   }
 `;
 

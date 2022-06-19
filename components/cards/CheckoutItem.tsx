@@ -23,7 +23,7 @@ const CheckoutItem = ({ product }: { product: CheckoutItemType }) => {
             <br />
             <span>Size: {product.size}</span>
           </div>
-          <div className="price">₱{product.price * product.quantity}</div>
+          <div className="price">₱{product.sale === "Yes" ? product.discount_price * product.quantity : product.price * product.quantity}</div>
         </div>
       </div>
     </CheckoutItemStyles>

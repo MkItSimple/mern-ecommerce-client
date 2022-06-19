@@ -14,7 +14,7 @@ import { useApp } from "../states/AppContext";
 const Checkout = () => {
   const router = useRouter();
   const { user, clearCart, setCouponApplied, addressSaved, setAddressSaved } = useApp(); 
-  const [emptyAddress, setEmptyAddress] = useState(false)
+  const [emptyAddress, setEmptyAddress] = useState(false);
 
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);

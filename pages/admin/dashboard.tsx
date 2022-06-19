@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { changeStatus } from '../../api/admin';
@@ -17,15 +17,18 @@ const Dashboard = () => {
 
   const [orders, setOrders] = useState<OrderType[]>([]);
 
-  useEffect(() => {
-    loadOrders();
-  }, []);
-
-  const loadOrders = () =>
+  const loadOrders = useCallback(
+    () =>
     getUserOrders(user.token).then((res) => {
       console.log(JSON.stringify(res.data, null, 4));
       setOrders(res.data);
-    });
+    }),
+    [user],
+  )
+  
+  useEffect(() => {
+    loadOrders();
+  }, [loadOrders]);
 
   const handleStatusChange = (orderId: string, orderStatus: string) => {
     changeStatus(orderId, orderStatus, user.token).then((res) => {

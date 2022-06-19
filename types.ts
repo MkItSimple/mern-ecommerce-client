@@ -13,8 +13,6 @@ brand: string,
 color: string,
 image: string,
 price: number,
-discount_price: number,
-sale: string,
 quantity: number,
 size: string,
 title: string,
@@ -46,7 +44,6 @@ export interface CartItemType {
   ]
   price:number
   discount_price:number,
-  sale: string,
   quantity:number,
   shipping: string
 }

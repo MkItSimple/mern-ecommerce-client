@@ -27,7 +27,7 @@ const SubTotal = () => {
       .catch((err: any) => console.log("cart save err", err));
   }; 
   const totalPrice = cart.reduce(
-      (total: number, current: CartItemType) => (total += current.price * current.quantity),
+      (total: number, current: CartItemType) => (total += current.sale === "Yes" ? current.discount_price * current.quantity : current.price * current.quantity),
       0
     )
   

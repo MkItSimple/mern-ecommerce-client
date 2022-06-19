@@ -1,45 +1,19 @@
 import React, { FormEvent, useState } from "react";
-import styled from "styled-components";
 import AdminNav from "../../../components/nav/AdminNav";
 import { toast } from "react-toastify";
 import { createColorApi, removeColorApi } from "../../../api/colorApi";
 import { VariantType } from "../../../types";
-import { TableMixins } from "../../../components/styles/GlobalStyles";
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import VariantForm from "../../../components/forms/VariantForm";
-import IconUpdate from "../../../components/svg/IconUpdate";
-import IconDelete from "../../../components/svg/IconDelete";
 import LocalSearch from "../../../components/forms/LocalSearch";
 import { useApp } from "../../../states/AppContext";
 import { useRouter } from "next/router";
 import Loading from "../../../components/Loading";
+import { DashboardStyles } from "../../../components/styles/DashboardStyles";
+import Header from "../../../components/Header";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
-const RootDiv = styled.div`
-  max-width: 1500px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 250px auto;
-
-  ${TableMixins}
-
-  .right {
-    padding: 1em 2em;
-  }
-  .wrapper {
-    max-width: 600px;
-  }
-  .page_header {
-    text-align: left;
-  }
-  input {
-    margin-bottom: 1em;
-  }
-  button {
-    min-width: 77px;
-  }
-  
-`;
 const ColorCreate = ({renderedColors}: {renderedColors: VariantType[]}) => {
   const router = useRouter();
   const { user, loading, setLoading } = useApp();
@@ -90,44 +64,44 @@ const ColorCreate = ({renderedColors}: {renderedColors: VariantType[]}) => {
   const searched = (keyword: string) => (item: VariantType) => item.name.toLowerCase().includes(keyword);
 
   return (
-    <>
+    <DashboardStyles>
       {loading && <Loading />}
-      <RootDiv>
-      <div className="left">
-        <AdminNav />
-      </div>
-      <div className="right">
-        <div className="wrapper">
-          <h1 className="page_header">Create Color</h1>
-          <VariantForm
-            handleSubmit={handleSubmit}
-            name={name}
-            setName={setName}
-          />
-          <LocalSearch keyword={keyword} setKeyword={setKeyword} />
-            <table>
-            <tr>
-              <th>Color</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-            {colors.filter(searched(keyword)).map((i) => (
-              <tr key={i._id}>
-                <td>{i.name}</td>
-                <td className="action">
-                  <IconUpdate onClickFunction={() => router.push(`/admin/color/${i.slug}`)}/>
-                </td>
-                <td className="action">
-                  <IconDelete onClickFunction={() => handleRemove(i.slug)}/>
-                </td>
+      <Header />
+      <div className="content_wrapper">
+        <div className="left">
+          <AdminNav />
+        </div>
+        <div className="right">
+          <div className="wrapper">
+            <h1 className="page_header">Add New Color</h1>
+            <VariantForm
+              handleSubmit={handleSubmit}
+              name={name}
+              setName={setName}
+            />
+            <LocalSearch keyword={keyword} setKeyword={setKeyword} />
+              <table>
+              <tr>
+                <th>Color</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
-            ))}
-          </table>
+              {colors.filter(searched(keyword)).map((i) => (
+                <tr key={i._id}>
+                  <td>{i.name}</td>
+                  <td className="action">
+                    <EditOutlined onClick={() => router.push(`/admin/color/${i.slug}`)}/>
+                  </td>
+                  <td className="action">
+                    <DeleteOutlined onClick={() => handleRemove(i.slug)}/>
+                  </td>
+                </tr>
+              ))}
+            </table>
+          </div>
         </div>
       </div>
-    </RootDiv>
-    </>
-    
+    </DashboardStyles>
   );
 };
 

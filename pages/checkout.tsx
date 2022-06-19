@@ -13,13 +13,13 @@ import { useApp } from "../states/AppContext";
 
 const Checkout = () => {
   const router = useRouter();
-  const { user, clearCart, setCouponApplied } = useApp(); 
-  const [emptyAddress, setEmptyAddress] = useState(false)
+  const { user, clearCart, setCouponApplied, addressSaved, setAddressSaved } = useApp(); 
+  const [emptyAddress, setEmptyAddress] = useState(false);
 
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [coupon, setCoupon] = useState("");
-  const [addressSaved, setAddressSaved] = useState(false);
+  
   // discount price
   const [totalAfterDiscount, setTotalAfterDiscount] = useState(0);
   const [discountError, setDiscountError] = useState("");
@@ -32,7 +32,7 @@ const Checkout = () => {
     });//
 
     user?.address?.street && setAddressSaved(true);
-  }, [user]);
+  }, [user, setAddressSaved]);
 
   const emptyCart = () => {
     // remove from session cookie
@@ -77,9 +77,9 @@ const Checkout = () => {
     setDiscountError("");
   };
 
-  useEffect(() => {
-    console.log("checkout products ", products);
-  }, [products])
+  // useEffect(() => {
+  //   console.log("checkout products ", products);
+  // }, [products])
   
   const ChevronDown = () => {
     return (
@@ -118,9 +118,9 @@ const Checkout = () => {
 
   const PlaceOrderButton = () => {
     if (addressSaved) {
-      return <button className={`big place_order full btn_black`} onClick={()=> router.push("/payment")} disabled={!user.address.street || !products.length}>Place Order</button>
+      return <button className={`big place_order full btn_black`} onClick={()=> router.push("/payment")} disabled={!addressSaved || !products.length}>Place Order</button>
     } else {
-      return <div className="provide_address">Please provide your address firstbefore placing your order.</div>
+      return <div className="provide_address">Please provide your shipping address first before placing your order.</div>
     }
 
     // {!user.address ? (

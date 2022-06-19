@@ -19,6 +19,7 @@ export const AppContextProvider = ({
   const router = useRouter();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [user, setUser] = useState<any>(null)
+  const [addressSaved, setAddressSaved] = useState(false)
   const [openCartDrawer, setOpenCartDrawer] = useState(false)
   const [openFilterDrawer, setOpenFilterDrawer] = useState(false)
   const [openSearchDrawer, setOpenSearchDrawer] = useState(false)
@@ -26,7 +27,7 @@ export const AppContextProvider = ({
   const [openZoom, setOpenZoom] = useState(false);
   const [zoomUrl, setZoomUrl] = useState("");
   const [cart, setCart] = useState<CartItemType[]>([]);
-  const [coupon, setCoupon] = useState("")
+  const [couponApplied, setCouponApplied] = useState("")
   const [intended, setIntended] = useState("")
 
   const [loading, setLoading] = useState(false)
@@ -263,11 +264,9 @@ export const AppContextProvider = ({
     }
   }, [cart])
 
-  useEffect(() => {
-  //  console.log("filteredProducts ", filteredProducts);
-   
-  }, [filteredProducts])
-  
+  // useEffect(() => {
+  // //  console.log("filteredProducts ", filteredProducts);
+  // }, [filteredProducts])
   
   return (
     <AppContext.Provider value={{
@@ -279,6 +278,7 @@ export const AppContextProvider = ({
       openZoom, setOpenZoom,
       zoomUrl, setZoomUrl,
       user,
+      addressSaved, setAddressSaved,
       signup,
       signinWithLink,
       loginWithGoogle,
@@ -293,7 +293,7 @@ export const AppContextProvider = ({
       changeQuantity,
       incrementCartItem,
       decrementCartItem,
-      coupon, setCoupon,
+      couponApplied, setCouponApplied,
       intended, setIntended,
       loading, setLoading,
       sort, setSort,

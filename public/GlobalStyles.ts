@@ -38,15 +38,15 @@ export const TableMixins = () => css`
   td {
     font-family: "Gotham Light";
     padding: .7em 1em;
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
     /* justify-content: center; */
   }
   tr {
       /* border-bottom: 1px solid #e2e2e2; */
   }
 
-  tr:nth-child(odd) {
+  tr:nth-child(even) {
     /* background-color: #e0e5eb; */
     /* background-color: #E0E5EB; */
   }

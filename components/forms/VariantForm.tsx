@@ -3,6 +3,13 @@ import { FormEvent } from "react";
 import styled from 'styled-components'; const StyledForm = styled.form`
   font-weight: 200;
   margin-bottom: 3em;
+  input {
+    margin-bottom: .5em;
+    max-width: 300px;
+  }
+  button {
+    min-width: 100px;
+  }
 `
 
 interface TypeCategoryForm { handleSubmit: (e: FormEvent<HTMLFormElement>) => void, name: string, setName: (name: string) => void }

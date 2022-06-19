@@ -7,6 +7,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import { useApp } from "../states/AppContext";
+import { numberWithCommas } from "../hooks/useFunctions";
 const StripeCheckoutStyles = styled.div`
   max-width: 500px;
   margin: 0 auto;
@@ -40,7 +41,7 @@ const StripeCheckout = () => {
   // const { user } = useSelector((state) => ({ ...state }));
   // const user = useSelector((state) => state.user.value);
   // const coupon = useSelector((state) => state.user.couponApplied);
-  const { user, couponApplied, clearCart } = useApp();
+  const { user, couponApplied, setCouponApplied, clearCart } = useApp();
 
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -157,14 +158,18 @@ const StripeCheckout = () => {
         {!succeeded && (
           <div>
             {couponApplied && totalAfterDiscount !== undefined ? (
-              <p className="alert alert-success">{`Total after discount: $${totalAfterDiscount}`}</p>
+              <p className="alert alert-success">{`Total after discount: $${numberWithCommas(
+                totalAfterDiscount
+              )}`}</p>
             ) : (
               <p className="alert alert-danger">No coupon applied</p>
             )}
           </div>
         )}
-        <div>Total: ${cartTotal}</div>
-        <div>Total Payables: ${(payable / 100).toFixed(2)}</div>
+        <div>Total: ${numberWithCommas(cartTotal)}</div>
+        <div>
+          Total Payables: ${numberWithCommas((payable / 100).toFixed(2))}
+        </div>
       </div>
 
       <form id="payment-form" className="stripe-form" onSubmit={handleSubmit}>

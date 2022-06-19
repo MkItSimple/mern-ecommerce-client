@@ -29,7 +29,7 @@ export interface IFormInputs {
 const ShippingForm = ({user}: {user: User}) => {
   const router = useRouter();
 
-  const { loading, setLoading } = useApp();
+  const { loading, setLoading, setAddressSaved } = useApp();
 
   const { register, setValue, handleSubmit, reset, formState: { errors } } = useForm<IFormInputs>({
     resolver: yupResolver(schema),
@@ -57,6 +57,7 @@ const ShippingForm = ({user}: {user: User}) => {
 
       if (res.data.ok) {
          setLoading(false);
+         setAddressSaved(true);
         toast.success("Address saved");
          //update user address in redux
         const updatedUserAddress = {

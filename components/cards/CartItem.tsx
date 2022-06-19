@@ -68,7 +68,7 @@ const CartItem = ({ cartItem }: { cartItem: CartItemType }) => {
               </svg>
             </div>
           </div>
-          <div className="price">₱{cartItem.price * cartItem.quantity}</div>
+          <div className="price">₱{cartItem.sale === 'Yes' ? cartItem.discount_price * cartItem.quantity : cartItem.price * cartItem.quantity}</div>
         </div>
       </div>
     </CartItemStyles>

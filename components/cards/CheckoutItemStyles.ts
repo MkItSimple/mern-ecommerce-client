@@ -33,6 +33,7 @@ export const CheckoutItemStyles = styled.div`
     width: 100%;
     height: 100%;
     /* object-fit: cover; */
+    position: relative;
   }
   .product_name {
     text-transform: uppercase;

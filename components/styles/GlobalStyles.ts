@@ -12,24 +12,17 @@ export const TableMixins = () => css`
     border-collapse: collapse;
     width: 100%;
     background-color: white;
-    /* border: 1px solid #eee; */
     border-radius: 5px;
     margin-top: 1.7em;
   }
 
   td,
   th {
-    /* border: 1px solid #dddddd; */
     text-align: left;
-    
-    /* font-family: "Gotham Light"; */
     font-size: 14px;
-    /* color: white; */
   }
   th {
-    /* background-color: #797979; */
     background-color: #272C2F;
-    
     font-family: "Gotham Light";
     color: white;
     font-weight: 200;
@@ -38,33 +31,15 @@ export const TableMixins = () => css`
   td {
     font-family: "Gotham Light";
     padding: .7em 1em;
-    display: flex;
-    align-items: center;
-    /* justify-content: center; */
-  }
-  tr {
-      /* border-bottom: 1px solid #e2e2e2; */
   }
 
-  tr:nth-child(odd) {
-    /* background-color: #e0e5eb; */
-    /* background-color: #E0E5EB; */
+  tr:nth-child(even) {
+    background-color: #e0e5eb4d;
   }
 
   td.action {
     width: 50px;
   }
-
-  /* svg {
-    width: 20px;
-    height: 20px;
-    padding: 0em .7em;
-    fill: #272C2F;
-    &:hover {
-        cursor: pointer;
-        fill: #797979;
-    }
-  } */
   .icon_container {
     height: 30px;
     width: 30px;
@@ -73,10 +48,57 @@ export const TableMixins = () => css`
     display: grid;
     grid-template-columns: 100px auto 200px;
   }
-  /* th.name, td.name {
-    max-width: 100px;
-    background-color: #eee;
-  } */
+`;
+
+export const TableMixins2 = () => css`
+  table {
+    font-family: "Gotham Light";
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+    /* border: 1px solid #eee; */
+    border-radius: 5px;
+    margin-top: .7em;
+    margin-bottom: 1.7em;
+  }
+
+  td,
+  th,
+  div {
+    text-align: left;
+    font-size: 14px;
+    font-family: "Gotham Light";
+  }
+  th {
+    background-color: #272C2F;
+    
+    color: white;
+    font-weight: 200;
+    padding: .7em 1em;
+  }
+  td {
+    padding: .7em 1em;
+  }
+  tr {
+      /* border-bottom: 1px solid #e2e2e2; */
+  }
+
+  tr:nth-child(odd) {
+    background-color: #e0e5eb4d;
+    /* background-color: #E0E5EB; */
+  }
+
+  td.action {
+    width: 50px;
+  }
+  .icon_container {
+    height: 30px;
+    width: 30px;
+  }
+  tr.whishlist {
+    display: grid;
+    grid-template-columns: 100px auto 200px;
+  }
 `;
 
 const size = {

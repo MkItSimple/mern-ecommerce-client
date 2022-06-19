@@ -13,6 +13,9 @@ import { Coupon } from "../../types";
 import { useApp } from "../../states/AppContext";
 import AdminNav from "../../components/nav/AdminNav";
 import Loading from "../../components/Loading";
+import { DashboardStyles } from "../../components/styles/DashboardStyles";
+import Header from "../../components/Header";
+import { DeleteOutlined } from "@ant-design/icons";
 
 const RootDiv = styled.div`
   max-width: 1500px;
@@ -78,17 +81,18 @@ const CreateCouponPage = () => {
     }
   };
   return (
-    <>
-    {loading && <Loading />}
-    <RootDiv>
-      <div className="left">
-        <AdminNav />
-      </div>
-      <div className="right">
+    <DashboardStyles>
+      {loading && <Loading />}
+      <Header />
+      <div className="content_wrapper">
+        <div className="left">
+          <AdminNav />
+        </div>
+        <div className="right">
         <div className="wrapper">
-          <h1 className="page_header">Coupon</h1>
+          <h1 className="page_header">Create New Coupons</h1>
           <form onSubmit={handleSubmit}>
-            <label className="text-muted">Name</label>
+            <label className="text-muted">Coupon Name</label>
             <input
               type="text"
               className="full regular"
@@ -135,17 +139,17 @@ const CreateCouponPage = () => {
                   <td>{new Date(c.expiry).toLocaleDateString()}</td>
                   <td>{c.discount}%</td>
                   <td>
-                    <span onClick={() => handleRemove(c._id)}>Remove</span>
+                    {/* <span onClick={() => handleRemove(c._id)}>Remove</span> */}
+                    <DeleteOutlined onClick={() => handleRemove(c._id)}/>
                   </td>
                 </tr>
               ))}
             <br />
           </table>
+         </div>
         </div>
       </div>
-    </RootDiv>
-    </>
-    
+    </DashboardStyles>
   );
 };
 

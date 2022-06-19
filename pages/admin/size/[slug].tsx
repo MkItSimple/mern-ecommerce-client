@@ -1,45 +1,22 @@
 import { useState, useEffect, FormEvent, useCallback } from "react";
 import { toast } from "react-toastify";
-import { getSizeApi, updateSizeApi } from "../../../api/size";
-import styled from "styled-components";
+import { getSizeApi, updateSizeApi } from "../../../api/sizeApi";
 import AdminNav from "../../../components/nav/AdminNav";
+import Loading from "../../../components/Loading"
 import VariantForm from "../../../components/forms/VariantForm";
-import Loading from "../../../components/Loading";
 import { useRouter } from "next/router";
 import { useApp } from "../../../states/AppContext";
-
-const RootDiv = styled.div`
-  max-width: 1500px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 250px auto;
-
-  .right {
-    padding: 1em 2em;
-  }
-  .wrapper {
-    max-width: 600px;
-  }
-  .page_header {
-    text-align: left;
-  }
-  input {
-    margin-bottom: 1em;
-  }
-  button {
-    min-width: 77px;
-  }
-`;
+import Header from "../../../components/Header";
+import { DashboardStyles } from "../../../components/styles/DashboardStyles";
 
 const SizeUpdate = () => {
   const { user, loading, setLoading } = useApp();
   const router = useRouter();
   const slug = router.query.slug as string
   const [name, setName] = useState("");
-
   const loadSize = useCallback(
     () => {
-      slug && getSizeApi(slug).then((c) => {
+      slug && getSizeApi(slug).then((c: any) => {
         setName(c.data.size.name);
       })
     },
@@ -68,24 +45,25 @@ const SizeUpdate = () => {
   };
 
   return (
-    <>
-    {loading && <Loading />}
-     <RootDiv>
-      <div className="left">
-        <AdminNav />
-      </div>
-      <div className="right">
-        <div className="wrapper">
-          <h1 className="page_header">Size Update</h1>
-          <VariantForm
-            handleSubmit={handleSubmit}
-            name={name}
-            setName={setName}
-          />
+    <DashboardStyles>
+      {loading && <Loading />}
+      <Header />
+      <div className="content_wrapper">
+        <div className="left">
+          <AdminNav />
+        </div>
+        <div className="right">
+          <div className="wrapper">
+            <h1 className="page_header">Size Update</h1>
+            <VariantForm
+              handleSubmit={handleSubmit}
+              name={name}
+              setName={setName}
+            />
+          </div>
         </div>
       </div>
-    </RootDiv>
-    </>
+    </DashboardStyles>
   );
 };
 

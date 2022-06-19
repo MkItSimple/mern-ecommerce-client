@@ -19,6 +19,8 @@ import FileUpload from "../../../components/forms/FileUpload";
 
 import { ProductUpdateStyles } from '../../../components/styles/ProductUpdateStyles';
 import { useApp } from "../../../states/AppContext";
+import Header from "../../../components/Header";
+import { DashboardStyles } from "../../../components/styles/DashboardStyles";
 
 const schema = yup.object({
   title: yup.string().required(),
@@ -190,22 +192,26 @@ const ProductPage = ({product, brands, colors, sizes}:{product:ProductType, bran
   return (
     <>
     {loading && <Loading />}
-    <ProductUpdateStyles>
-      <div className="left">
-        <AdminNav />
-      </div>
-      <div className="right">
-        <div className="wrapper">
-          <h1 className="page_header">Product Update</h1>
+    <DashboardStyles>
+      {loading && <Loading />}
+      <Header />
+      <div className="content_wrapper">
+        <div className="left">
+          <AdminNav />
+        </div>
+        <div className="right">
+          <div className="wrapper">
+            <h1 className="page_header">Product Update</h1>
           <FileUpload
             product={product} existingImages={existingImages} previewSource={previewSource} handleRemoveExisting={handleRemoveExisting} handleRemove={handleRemove} moveCard={moveCard} findCard={findCard} handleFileInputChange={handleFileInputChange} resetImagesHandler={resetImagesHandler}          />
           <br />
           {/* <ProductForm /> */}
           {/* <ProductForm cho="choreyn" /> */}
           <ProductForm handleSubmit={handleSubmit} onSubmit={onSubmit} register={register} errors={errors} values={{brands, colors, sizes}}/>
+          </div>
         </div>
       </div>
-    </ProductUpdateStyles>
+    </DashboardStyles>
     </>
   )
 }

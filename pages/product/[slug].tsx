@@ -122,8 +122,8 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
   };
 
   const handleAddToCart = (product: Product) => {
-    const {_id, title, description, brand, color, size, images, price, discount_price, shipping} = product;
-    addToCart({_id, title, description, brand, color, size, images, price, discount_price, quantity: 1, shipping})
+    const {_id, title, description, brand, color, size, images, price, discount_price, sale, shipping} = product;
+    addToCart({_id, title, description, brand, color, size, images, price, discount_price, sale, quantity: 1, shipping})
     setOpenCartDrawer(true)
     setCartChanged(true);
   };

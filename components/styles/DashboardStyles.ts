@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { device, TableMixins } from './GlobalStyles';
+import { device, TableMixins2 } from './GlobalStyles';
 export const DashboardStyles = styled.div`
-${TableMixins}
+${TableMixins2}
     .content_wrapper {
     max-width: 1600px;
     /* background-color: #eee; */
@@ -49,6 +49,7 @@ ${TableMixins}
   }
   h1 {
     margin: 0px;
+    margin-bottom: .5em;
   }
   form {
     max-width: 600px;

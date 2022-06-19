@@ -15,7 +15,7 @@ const nextConfig = {
     firebaseMessagingSenderId: "834124421298",
     firebaseAppId: "1:834124421298:web:72dad6d9250f2f375791ab",
 
-    // apiUrl: "http://localhost:8888", //
+    // apiUrl: "http://localhost:8888",
     // firebaseRegisterRedirectUrl: "http://localhost:3000/register-complete",
     // firebaseForgotPasswordRedirect: "http://localhost:3000/login",
 

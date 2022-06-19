@@ -219,6 +219,11 @@ export enum ModalType {
     MODAL_CONFIRMATION = "MODAL_CONFIRMATION",
 }
 
+export enum SaleEnum {
+    YES = "Yes",
+    NO = "No",
+}
+
 export interface CartItemType {
     _id: string, 
     title: string, 

@@ -2,14 +2,14 @@
 
 
 import { useCallback, useEffect, useState } from "react";
-import _ from "lodash";
+import _, { sampleSize } from "lodash";
 import { updateCart} from "../../api/cartApi";
 import { toast } from "react-toastify";
 import { getProductApi, productStarApi } from "../../api/productApi";
 import Header from "../../components/Header";
 import { Rating } from "react-simple-star-rating";
 import { useRouter } from "next/router";
-import { Product, VariantType } from "../../types";
+import { Product, SaleEnum, VariantType } from "../../types";
 import { useApp } from "../../states/AppContext";
 import { showAverage } from "../../api/rating";
 import ConfirmationModal from "../../components/modals/ConfirmationModal";
@@ -122,8 +122,8 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
   };
 
   const handleAddToCart = (product: Product) => {
-    const {_id, title, description, brand, color, size, images, price, discount_price, shipping} = product;
-    addToCart({_id, title, description, brand, color, size, images, price, discount_price, quantity: 1, shipping})
+    const {_id, title, description, brand, color, size, images, price, discount_price, sale, shipping} = product;
+    addToCart({_id, title, description, brand, color, size, images, price, discount_price, sale, quantity: 1, shipping})
     setOpenCartDrawer(true)
     setCartChanged(true);
   };
@@ -138,8 +138,6 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
   
   return (
     <ProductStyles>
-      {openCartDrawer && <CartDrawer />}
-      {openSearchDrawer && <SearchDrawer />}
       {openZoom && <ZoomProduct />}
       <Header />
       <div className="product_wrapper">
@@ -151,16 +149,17 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
         </div>
         <div className="right">
           <div className="right_wrapper">
-            <h1 className="product_name">{product?.title}s</h1>
+            <h1 className="product_name">{product.title}s</h1>
             <div className="price_container">
-              <span className="old_price">P{product?.price}</span>
-              <span>P{product?.discount_price}</span>
-              <span className="save_price">P2,490.00</span>
+              <span className={product.sale === SaleEnum.YES ? 'old_price' : ''}>Php {product.price}</span>
               
+              {product.sale === SaleEnum.YES && <>
+              <span>Php {product.discount_price}</span><span className="save_price">P{product.price - product.discount_price}</span>
+              </>}
             </div>
 
-            <div className="variant_header">Available ({product?.quantity})</div>
-             <div className="variant_header">Sold ({product?.sold})</div>
+            <div className="variant_header">Available ({product.quantity})</div>
+             <div className="variant_header">Sold ({product.sold})</div>
              <div className="variant_header ratings" >
                {product && product.ratings && product.ratings.length > 0 ? (
                   showAverage(product)
@@ -174,7 +173,7 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
 
               {colors.map((color) => (
               <span key={color._id}>
-                <input type="radio" id={color.slug} name={color.slug} disabled={product?.color.slug === color.slug ? false : true}/>
+                <input type="radio" id={color.slug} name={color.slug} disabled={product.color.slug === color.slug ? false : true}/>
                 <label htmlFor={color.slug} className={product?.color.slug !== color.slug ? "disabled" : ""}>{color.name}</label>
               </span>
               ))}

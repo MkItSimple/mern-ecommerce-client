@@ -35,6 +35,10 @@ import { device } from '../public/GlobalStyles';
         z-index: 10;
         font-size: 1.3em;
         cursor: pointer;
+        background-color: #0A0502;
+        padding: 0.5em;
+        border-radius: 50%;
+        color: white;
       }
     }
 
@@ -51,8 +55,9 @@ const ZoomProduct = () => {
   return (
     <ZoomProductStyles>
         <div className="zoom_image_container" onClick={exit}>
-          {/* <CloseOutlined className='close'/> */}
-          <span className='close' onClick={exit}>Close</span>
+          <CloseOutlined className='close' onClick={exit}/>
+          {/* <span className='close' onClick={exit}>Close</span> */}
+          
           <Image src={zoomUrl} layout='fill' objectFit='cover' alt='' />
         </div>
     </ZoomProductStyles>

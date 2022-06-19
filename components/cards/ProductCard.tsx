@@ -25,21 +25,21 @@ const ProductCard = ({ product }: {product: Product}) => {
             <Image src={product.images[1].url ? product.images[1].url : ""} alt="" layout="fill" objectFit="cover" priority />
           </div>
           <span className="brand">{product.brand.name}</span>
-          <span className={`tag ${product.sale === "Yes" ? "sale" : ""}`}></span>
+          <span className={product.sale ? "tag sale" : "tag"}></span>
           <span className="quick_view">Quick View</span>
-          <span className="sold">Sold ({product.sold}) {product.sale}</span>
+          <span className="sold">Sold ({product.sold})</span>
         </div>
         <div className="product_name">{product.title}</div>
         <div className="description_container">
-          <span className={`price ${product.sale === "Yes" ? "sale" : ""}`}>
+          <span className={`price ${product.sale ? "sale" : ""}`}>
             ₱{numberWithCommas(product.price)}
           </span>
 
-          <span className={`discount_price ${product.sale === "Yes" ? "sale" : ""}`}>
+          <span className={`discount_price ${product.sale ? "sale" : ""}`}>
             ₱{numberWithCommas(product.discount_price)}
           </span>
 
-          <span className={`save ${product.sale === "Yes" ? "sale" : ""}`}>
+          <span className={`save ${product.sale ? "sale" : ""}`}>
             Save ₱{numberWithCommas(product.price - product.discount_price)}
           </span>
         </div>

@@ -31,15 +31,15 @@ const ProductCard = ({ product }: {product: Product}) => {
         </div>
         <div className="product_name">{product.title}</div>
         <div className="description_container">
-          <span className={`price ${product.sale ? "sale" : ""}`}>
+          <span className={`price ${product.sale === "Yes" ? "sale" : ""}`}>
             ₱{numberWithCommas(product.price)}
           </span>
 
-          <span className={`discount_price ${product.sale ? "sale" : ""}`}>
+          <span className={`discount_price ${product.sale === "Yes" ? "sale" : ""}`}>
             ₱{numberWithCommas(product.discount_price)}
           </span>
 
-          <span className={`save ${product.sale ? "sale" : ""}`}>
+          <span className={`save ${product.sale === "Yes" ? "sale" : ""}`}>
             Save ₱{numberWithCommas(product.price - product.discount_price)}
           </span>
         </div>

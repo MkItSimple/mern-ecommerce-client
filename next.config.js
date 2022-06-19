@@ -15,18 +15,18 @@ const nextConfig = {
     firebaseMessagingSenderId: "834124421298",
     firebaseAppId: "1:834124421298:web:72dad6d9250f2f375791ab",
 
-    apiUrl: "http://localhost:8888",
-    firebaseRegisterRedirectUrl: "http://localhost:3000/register-complete",
-    firebaseForgotPasswordRedirect: "http://localhost:3000/login",
+    // apiUrl: "http://localhost:8888",
+    // firebaseRegisterRedirectUrl: "http://localhost:3000/register-complete",
+    // firebaseForgotPasswordRedirect: "http://localhost:3000/login",
 
     // apiUrl: "http://localhost:8001/api",
     // apiUrl: "https://stark-falls-64890.herokuapp.com/api",
 
-    // apiUrl: "https://majestic-vacherin-e241d2.netlify.app",
-    // firebaseRegisterRedirectUrl:
-    //   "https://unique-dodol-3c5c57.netlify.app/register-complete",
-    // firebaseForgotPasswordRedirect:
-    //   "https://unique-dodol-3c5c57.netlify.app/login",
+    apiUrl: "https://majestic-vacherin-e241d2.netlify.app",
+    firebaseRegisterRedirectUrl:
+      "https://unique-dodol-3c5c57.netlify.app/register-complete",
+    firebaseForgotPasswordRedirect:
+      "https://unique-dodol-3c5c57.netlify.app/login",
   },
   webpack(config) {
     config.module.rules.push({

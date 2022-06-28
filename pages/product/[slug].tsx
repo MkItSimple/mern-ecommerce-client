@@ -19,8 +19,6 @@ import ProductSlider from "../../components/ProductSlider";
 import { GetServerSideProps } from "next";
 import axios from "axios";
 import IconStar from "../../components/svg/Star";
-import CartDrawer from "../../components/drawers/CartDrawer";
-import SearchDrawer from "../../components/drawers/SearchDrawer";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart} from "@fortawesome/free-solid-svg-icons"
@@ -33,9 +31,6 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
     user, 
     openConfirmationModal , 
     setOpenConfirmationModal, 
-    openModal, 
-    openCartDrawer, 
-    openSearchDrawer,  
     cart,  
     setOpenCartDrawer,
     openZoom,
@@ -67,10 +62,12 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
     setStarHandler()
   }, [setStarHandler]);
 
-  const loadSingleProduct = () => {
-    slug && getProductApi(slug as string).then((res) => {
-      setProduct(res.data);
-    });
+  const loadSingleProduct = async () => {
+    // slug && getProductApi(slug as string).then((res) => {
+    //   setProduct(res.data);
+    // });
+    const res = await getProductApi(slug as string)
+    setProduct(res.data)
   };
 
  const toggleModal = (value: boolean) => {
@@ -81,14 +78,19 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
     return <Rating onClick={onStarClick} ratingValue={star} fillColor="rgb(230, 67, 47)" readonly={false} />
   };
 
-  const onStarClick = (newRating: number) => {
+  const onStarClick = async (newRating: number) => {
     setStar(newRating);
-    product?._id && user?.token && productStarApi(product._id, newRating, user?.token).then((res) => {
-      console.log("rating clicked", res.data);
-      toast.success(`Thanks for your rating!`);
-      toggleModal(false);
-      loadSingleProduct(); // if you want to show updated rating in real time
-    });
+    // product?._id && user?.token && productStarApi(product._id, newRating, user?.token).then((res) => {
+    //   console.log("rating clicked", res.data);
+    //   toast.success(`Thanks for your rating!`);
+    //   toggleModal(false);
+    //   loadSingleProduct(); // if you want to show updated rating in real time
+    // });
+
+    const res = await productStarApi(product._id, newRating, user?.token)
+    toast.success(`Thanks for your rating!`);
+    toggleModal(false);
+    loadSingleProduct(); // if you want to show updated rating in real time
   };
 
   // If loggedin open rating modal, else redirect to login page
@@ -96,27 +98,24 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
     if (user && user.token) {
       toggleModal(true);
     } else {
-      // history.push({
-      //   pathname: "/login",
-      //   state: { from: `/product/${slug}` },
-      // });
-      // navigate('/login');
       router.replace('/login');
     }
   };
 
-  const handleAddToWishlist = () => {
+  const handleAddToWishlist = async () => {
     // add to wishlist
     // console.log("add to wishlist");
 
     if (user && user.token) {
-      addToWishlist(product._id, user.token).then((res) => {
-        // console.log("ADDED TO WISHLIST", res.data);
-        toast.success("Added to wishlist");
-        router.push("/user/wishlist");
-      });
+      // addToWishlist(product._id, user.token).then((res) => {
+      //   // console.log("ADDED TO WISHLIST", res.data);
+      //   toast.success("Added to wishlist");
+      //   router.push("/user/wishlist");
+      // });
+      const res = await addToWishlist(product._id, user.token)
+      toast.success("Added to wishlist");
+      router.push("/user/wishlist");
     } else {
-
       router.replace('/login');
     }
   };
@@ -130,9 +129,7 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
 
   useEffect(() => {
     if (cartChanged) {
-      updateCart(cart).then((res) => {
-        console.log("server cart updated", res.data);
-      });
+      updateCart(cart)
     }
   }, [cart, cartChanged]);
   
@@ -219,11 +216,7 @@ const ProductPage = ({staticProduct, colors, sizes}: {staticProduct: Product, co
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
     // const { openConfirmationModal, openModal, openCart, openCartDrawer, cart } = useApp();
     let productRes = null;
-
     productRes = params && await axios.get(`${process.env.apiUrl}/product/${params.slug}`);
-
-    // const productsRes = await axios.get('http://localhost:8001/api/product');
-    // const brandsRes = await axios.get('http://localhost:8001/api/brands');
     const colorsRes = await axios.get(`${process.env.apiUrl}/colors`);
     const sizesRes = await axios.get(`${process.env.apiUrl}/sizes`);
 

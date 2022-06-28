@@ -15,12 +15,7 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    try {
-      await login(email, password); 
-    } catch (err) {
-      // console.log(err)
-    }
+    await login(email, password);
   };
 
   useEffect(() => {

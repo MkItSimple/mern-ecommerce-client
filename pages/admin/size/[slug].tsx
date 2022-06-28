@@ -14,11 +14,19 @@ const SizeUpdate = () => {
   const router = useRouter();
   const slug = router.query.slug as string
   const [name, setName] = useState("");
+  // const loadSize = useCallback(
+  //   () => {
+  //     slug && getSizeApi(slug).then((c: any) => {
+  //       setName(c.data.size.name);
+  //     })
+  //   },
+  //   [slug],
+  // )
+
   const loadSize = useCallback(
-    () => {
-      slug && getSizeApi(slug).then((c: any) => {
-        setName(c.data.size.name);
-      })
+    async () => {
+      const res = await getSizeApi(slug)
+      setName(res.data.size.name)
     },
     [slug],
   )
@@ -27,21 +35,34 @@ const SizeUpdate = () => {
     loadSize();
   }, [loadSize]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    slug && updateSizeApi(slug, name, user.token)
-      .then((res) => {
-        setLoading(false);
-        setName("");
-        toast.success(`"${res.data.name}" is updated`);
-        router.push("/admin/size/size-create");
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-        if (err.response.status === 400) toast.error(err.response.data);
-      });
+    // setLoading(true);
+    // updateSizeApi(slug, name, user.token)
+    //   .then((res) => {
+    //     setName("");
+    //     toast.success(`"${res.data.name}" is updated`);
+    //     router.push("/admin/size/size-create");
+    //   })
+    //   .catch((err) => {
+    //     // console.log(err);
+    //     if (err.response.status === 400) toast.error(err.response.data);
+    //   })
+    //   .finally(() => {
+    //     setLoading(false);
+    //   });
+
+    try {
+      setLoading(true);
+      const res = await updateSizeApi(slug, name, user.token)
+      setName("")
+      toast.success(`"${res.data.name}" is updated`)
+      router.push("/admin/size/size-create");
+    } catch (error: any) {
+      if (error.response.status === 400) toast.error(error.response.data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

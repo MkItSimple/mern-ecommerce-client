@@ -202,8 +202,6 @@ export const getProductsByFilters = (sort: string, products: Product[], allVaria
   let highestPrice = filterVariants.price[1] > 0 ? filterVariants.price[1] : allVariants.price[1];
   let sortedArray: Product[] = [];
 
-  
-
   const newArray = products.filter(function (el) {
     return brands.includes(el.brand.slug) && colors.includes(el.color.slug) && sizes.includes(el.size.slug) && el.price >= lowestPrice && el.price <= highestPrice
   });

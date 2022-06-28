@@ -35,13 +35,12 @@ const ProductCard = ({ product }: {product: Product}) => {
             ₱{numberWithCommas(product.price)}
           </span>
 
-          <span className={`discount_price ${product.sale === "Yes" ? "sale" : ""}`}>
-            ₱{numberWithCommas(product.discount_price)}
-          </span>
-
-          <span className={`save ${product.sale === "Yes" ? "sale" : ""}`}>
+          {product.sale === "Yes" && <span className='discount_price'>₱{numberWithCommas(product.discount_price)}</span>}
+          
+          {product.sale === "Yes" && 
+          <span className='save'>
             Save ₱{numberWithCommas(product.price - product.discount_price)}
-          </span>
+          </span>}
         </div>
       </div>
       {/* </Link> */}

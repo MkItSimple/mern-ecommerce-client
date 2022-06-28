@@ -123,7 +123,6 @@ export const AppContextProvider = ({
     setLoading(true);
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
-      // console.log(result);
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
 
@@ -141,20 +140,28 @@ export const AppContextProvider = ({
         })
         .catch((err) => console.log(err));
     } catch (error: any) {
-      // console.log(error);
       toast.error(error.message);
+    } finally {
       setLoading(false);
     }
   }
 
   const logout = async () => {
-    setUser(null)
-    await signOut(auth).then(() => {
-      setLoading(false)
-      router.push('/login');
-    })
+    // setUser(null)
+    // await signOut(auth).then(() => {
+    //   setLoading(false)
+    //   router.push('/login');
+    // })
     
-    // await console.log("logout");
+    try {
+      await signOut(auth)
+      setUser(null)
+      router.push('/login')
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setLoading(false)
+    }
 
   }
 

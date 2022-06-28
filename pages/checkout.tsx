@@ -53,33 +53,43 @@ const Checkout = () => {
     });
   };
 
-  const applyDiscountCoupon = () => {
-    // console.log("send coupon to backend", coupon);
-    user && applyCoupon(user.token, coupon).then((res) => {
-      // console.log("RES ON COUPON APPLIED", res.data);
-      if (res.data.err) {
-        setTotalAfterDiscount(0);
-        toast.error(res.data.err);
-        setDiscountError(res.data.err);
-        // dispatch(setCouponApplied(false))~
-        setCouponApplied(false)
-      } else {
-        toast.success('Coupon Applied');
-        setTotalAfterDiscount(res.data);
-        // dispatch(setCouponApplied(true));
-        setCouponApplied(true);
-      }
-    });
+  const applyDiscountCoupon = async () => {
+    // // console.log("send coupon to backend", coupon);
+    // user && applyCoupon(user.token, coupon).then((res) => {
+    //   // console.log("RES ON COUPON APPLIED", res.data);
+    //   if (res.data.err) {
+    //     setTotalAfterDiscount(0);
+    //     toast.error(res.data.err);
+    //     setDiscountError(res.data.err);
+    //     // dispatch(setCouponApplied(false))~
+    //     setCouponApplied(false)
+    //   } else {
+    //     toast.success('Coupon Applied');
+    //     setTotalAfterDiscount(res.data);
+    //     // dispatch(setCouponApplied(true));
+    //     setCouponApplied(true);
+    //   }
+    // });
+
+    const res = await applyCoupon(user.token, coupon)
+    
+    if (res.data.err) {
+      setTotalAfterDiscount(0);
+      toast.error(res.data.err);
+      setDiscountError(res.data.err);
+      setCouponApplied(false)
+    } else {
+      toast.success('Coupon Applied');
+      setTotalAfterDiscount(res.data);
+      setCouponApplied(true);
+    }
+
   }
 
   const setCouponHandler = (e: React.FormEvent<HTMLInputElement>) => {
     setCoupon(e.currentTarget.value);
     setDiscountError("");
   };
-
-  // useEffect(() => {
-  //   console.log("checkout products ", products);
-  // }, [products])
   
   const ChevronDown = () => {
     return (

@@ -41,9 +41,6 @@ import { device } from '../public/GlobalStyles';
         color: white;
       }
     }
-
-
-    
 `
 
 const ZoomProduct = () => {

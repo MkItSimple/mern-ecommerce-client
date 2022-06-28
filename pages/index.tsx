@@ -168,8 +168,8 @@ export const getStaticProps: GetStaticProps = async () => {
       brands: brandsRes.data,
       colors: colorsRes.data,
       sizes: sizesRes.data,
-    },
-    revalidate: 60
+    }
+    // revalidate: 60
   };
 }
 

@@ -27,7 +27,7 @@ const ProductCard = ({ product }: {product: Product}) => {
           <span className="brand">{product.brand.name}</span>
           <span className={`tag ${product.sale === "Yes" ? "sale" : ""}`}></span>
           <span className="quick_view">Quick View</span>
-          <span className="sold">Sold ({product.sold}) {product.sale}</span>
+          <span className="sold">Sold ({product.sold})</span>
         </div>
         <div className="product_name">{product.title}</div>
         <div className="description_container">
